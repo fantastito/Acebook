@@ -26,55 +26,57 @@ const Navbar = () => {
 
   return (
   <>
-  <div data-testid="navbar" id="navbar">
-  
-    <div className="logo-nav-item"> 
-      <Link to={`/`}>
-        <h3>AB</h3>
-        </Link>
-    </div>
-
-    <div data-testId="searchItem" className="search-nav-item">
-      <SearchNavItem 
-        handleSearch={handleSearch}
-      />
-      {showSearchResults && 
-        <div className="search-results-dropdown">
-        <SearchResultsDropDown 
-          setShowSearchResults={setShowSearchResults}
-          foundUsers={foundUsers}
-        />
-        </div>
-      }
-    </div>
-
-    <div className="home-nav-item">
-      <HomeNavItem />
-    </div>
+  <div className="navbar-container">
+    <div data-testid="navbar" id="navbar">
     
-    {token ? 
+      <div className="logo-nav-item"> 
+        <Link to={`/`}>
+          <h3>AB</h3>
+          </Link>
+      </div>
 
-      <>
-      <div className="logout-nav-item"> 
-        <LogoutNavItem />
-      </div>
-      <div className="User-nav-item">
-        <UserNavItem 
-          user={user}
+      <div data-testId="searchItem" className="search-nav-item">
+        <SearchNavItem 
+          handleSearch={handleSearch}
         />
+        {showSearchResults && 
+          <div className="search-results-dropdown">
+          <SearchResultsDropDown 
+            setShowSearchResults={setShowSearchResults}
+            foundUsers={foundUsers}
+          />
+          </div>
+        }
       </div>
-      </>
-        :
-        <>
-      <div className="login-nav-item"> 
-        <LoginNavItem />
-      </div>
-      <div className="signup-nav-item"> 
-        <SignupNavItem />
+
+      <div className="home-nav-item">
+        <HomeNavItem />
       </div>
       
-      </>
-    }
+      {token ? 
+
+        <>
+        <div className="logout-nav-item"> 
+          <LogoutNavItem />
+        </div>
+        <div className="User-nav-item">
+          <UserNavItem 
+            user={user}
+          />
+        </div>
+        </>
+          :
+          <>
+        <div className="login-nav-item"> 
+          <LoginNavItem />
+        </div>
+        <div className="signup-nav-item"> 
+          <SignupNavItem />
+        </div>
+        
+        </>
+      }
+    </div>
   </div>
 </>
 
