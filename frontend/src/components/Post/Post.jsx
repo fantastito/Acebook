@@ -136,9 +136,11 @@ const Post = (props) => {
                             />
                         )}
 
-                        {sortedComments.length > 1 && !showMoreComments && (
-                            <button onClick={showMoreCommentsClick}>...</button>
-                        )}
+                        <div className="more-comments-button-container">
+                            {sortedComments.length > 1 && !showMoreComments && (
+                                <button onClick={showMoreCommentsClick}>...</button>
+                            )}
+                        </div>
 
                         {showMoreComments &&
                             sortedComments
@@ -154,9 +156,11 @@ const Post = (props) => {
                                     />
                                 ))}
 
+                        <div className="hide-comments-button-container">
                         {showMoreComments && (
                             <button onClick={hideCommentsClick}>hide</button>
                         )}
+                        </div>
                 </div>
             </article>
         </div>
