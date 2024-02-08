@@ -24,6 +24,7 @@ const NewPost = ( {token, userId, toggleStateChange} ) => {
             
             formData.append('postMessage', postMessage)
         }
+        console.log("userId", userId)
         formData.append("userId", userId)
 
         createPost(token, formData)
