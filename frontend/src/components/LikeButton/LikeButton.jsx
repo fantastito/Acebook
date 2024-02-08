@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { createNotification } from "../../services/user";
 
 const likeThePost = async (props) => {
+    console.log("service", props.postID)
     try {
         const response = await fetch("http://localhost:3000/posts/likes", {
             method: "POST",
@@ -9,7 +10,10 @@ const likeThePost = async (props) => {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + window.localStorage.getItem("token"),
             },
-            body: JSON.stringify({ postID: props.postID }),
+            body: JSON.stringify({ 
+                postID: props.postID,
+                userId: props.userId
+            }),
         });
 
         if (!response.ok) {

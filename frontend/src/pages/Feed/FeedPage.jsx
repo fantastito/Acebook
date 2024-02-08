@@ -66,6 +66,7 @@ export const FeedPage = () => {
             <div className="feedpage-posts-container">
                 {posts.map((post) => {
                     const liked = post.likes.includes(user._id);
+                    console.log(liked)
                     return (
                         <Post
                             key={post._id}
@@ -76,6 +77,7 @@ export const FeedPage = () => {
                             loggedInUsername={user.username}
                             token={token}
                             liked={liked}
+                            userId={user._id}
                         />
                     );
                 })}
