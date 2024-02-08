@@ -107,15 +107,12 @@ const likePost = async (req, res) => {
 
 const deletePost = async (req, res) => {
     const postID = req.body.postID;
-    const userID = req.user_id;
+
     try {
-        const post = await Post.findOne({ _id: postID, postedBy: userID });
+        const post = await Post.findOneAndDelete({ _id: postID });
         if (!post) {
-            return res
-                .status(404)
-                .json({ message: "You are not this post's owner" });
+            return res.status(404).json({ message: "Post not found" });
         }
-        await Post.deleteOne({ _id: postID });
         res.status(200).json({ message: "Post deleted" });
     } catch (error) {
         res.status(500).json({ message: "Error deleting post" });

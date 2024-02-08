@@ -8,7 +8,7 @@ export default function ConfirmDeleteModal({ handleDeletePostTrue, handleDeleteP
         <div className="confirm-delete-container">
 
             <div className="text-content">
-                <p> confirm delete post?</p>
+                <p>confirm delete post?</p>
             </div>
 
             <div className="buttons">

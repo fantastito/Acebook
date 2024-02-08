@@ -108,6 +108,7 @@ const Post = (props) => {
                             <div className="delete-post-button-container">
                                 <DeleteButton
                                     postID={props.post._id}
+                                    token={props.token}
                                     handleDelete={handleDelete}
                                     onDelete={props.onDelete}
                                     showButton={isPostOwner}
@@ -120,6 +121,7 @@ const Post = (props) => {
                             postId={props.post._id}
                             toggleStateChange={props.toggleStateChange}
                             post_userId={props.postedBy._id}
+                            triggerStateChange={props.triggerStateChange}
                         />
                     </div>
 
