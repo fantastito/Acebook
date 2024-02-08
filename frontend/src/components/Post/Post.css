@@ -30,15 +30,18 @@
     height: 60px;
     width: 60px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 50%;
 }
 
 .username-time-container {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .post-username {
-
+    font-weight: bold;
+    padding-bottom: 5px;
 }
 
 .date-time{
@@ -60,7 +63,6 @@
     max-width: 100px;
 
 }
-
 
 .post-footer {
     display: flex;
@@ -93,6 +95,25 @@
     padding: 5px;
 }
 
+.add-comment-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.224)
+}
+
+.comments-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.more-comments-button-container {
+    padding: 5px
+}
+
+.hide-comments-button-container {
+    padding: 5px
+}
 
 
 /* .post-article {
