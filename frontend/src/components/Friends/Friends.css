@@ -13,11 +13,14 @@
 
 .friend-image {
     height: 45px;
-    width: 45x;
-    border-radius: 30px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
     margin: 10px;
     justify-content: center;
 }
+
+
 
 .friend-username {
     display: flex;
@@ -31,5 +34,5 @@
 .friend-container:hover{
 
     background-color: #f0f0f0;
-    width: 75%;
+    width: 90%;
 }

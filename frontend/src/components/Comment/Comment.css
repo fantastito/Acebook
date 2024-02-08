@@ -12,9 +12,15 @@
     flex-direction: row;
 }
 
+.comment-user-image-container {
+    
+
+}
+
 .comment-user-image-container img {
-    max-width: 50px;
-    max-height: 50px;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
     border-radius: 50%;
     padding: 10px;
 }

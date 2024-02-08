@@ -69,5 +69,6 @@
     margin: 10px;
     background-color: white;
     box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.454);
+    min-width: 500px;
 
 }

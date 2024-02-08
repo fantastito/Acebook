@@ -32,9 +32,7 @@ export const UserPage = () => {
                     setToken(data.token);
                     // setProfilePicture(data.user.image)
                     // setBio(data.user.bio)
-                    window.localStorage.setItem("token", data.token);
-                    window.localStorage.setItem("user", JSON.stringify(data.user))
-                })
+                    window.localStorage.setItem("token", data.token);                })
                 .catch((err) => {
                     console.error(err);
                 });
@@ -138,6 +136,7 @@ export const UserPage = () => {
                                     key={post._id}
                                     post={post}
                                     postedBy={post.postedBy}
+                                    triggerStateChange={triggerStateChange}
                                 
                                 />
                             </div>  

@@ -65,5 +65,28 @@ export const createPost = async (token, formData) => {
   }
 };
 
+export const deleteThePost = async (postId, token) => {
+  try {
+      const requestOptions = {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ postID: postId }),
+      }
+      const response = await fetch(`${BACKEND_URL}/posts/${postId}`, requestOptions)
+
+      if (response.ok) {
+        return "post deleted"
+      } else {
+        throw new Error(`delete post HTTP error! Status: ${response.status}`);
+      }
+  } catch (error) {
+      console.error("Error deleting post:", error);
+  }
+
+};
+
   
 

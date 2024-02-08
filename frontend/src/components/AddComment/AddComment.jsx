@@ -3,7 +3,7 @@ import { postComment } from "../../services/posts";
 import { createNotification } from "../../services/user";
 import './AddComment.css'
 
-export default function AddComment({ postId, toggleStateChange, post_userId }) {
+export default function AddComment({ postId, toggleStateChange, post_userId, triggerStateChange }) {
 	const [commentText, setCommentText] = useState("");
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
 	const [user, setUserId] = useState(
@@ -23,7 +23,9 @@ export default function AddComment({ postId, toggleStateChange, post_userId }) {
 				const result = await postComment(token, commentText, postId, user._id);
 				console.log(result);
 				setCommentText("");
-				toggleStateChange();
+				toggleStateChange ? toggleStateChange() : null
+				triggerStateChange ? triggerStateChange() : null
+				console.log("yes")
 
 				try {
 					console.log("try", user.username, post_userId, token);
