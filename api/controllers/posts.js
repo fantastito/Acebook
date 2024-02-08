@@ -123,7 +123,8 @@ const deletePost = async (req, res) => {
 const editPost = async (req, res) => {
 	const postID = req.body.postID;
 	const userID = req.user_id;
-	const newPostMessage = req.body.postMessage;
+	console.log(req.body, "backend");
+	const newPostMessage = req.body;
 
 	try {
 		const updatedPost = await Post.findOneAndUpdate(

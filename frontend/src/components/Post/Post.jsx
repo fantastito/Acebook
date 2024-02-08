@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import AddComment from "../AddComment/AddComment";
 import Comment from "../Comment/Comment";
 import DeleteButton from "../DeleteButton/DeleteButton";
+import EditPost from "../EditPost/EditPost";
 import EditButton from "../EditButton/EditButton";
 
 const Post = (props) => {
@@ -29,9 +30,9 @@ const Post = (props) => {
 	// console.log(user._id, props.post.postedBy._id, "LOOK HERE");
 	// console.log(props);
 
-	if (props.post.postedBy._id) {
-		console.log(props.post.postedBy._id, "LOOK HERE");
-	}
+	// if (props.post.postedBy._id) {
+	// 	console.log(props.post.postedBy._id, "LOOK HERE");
+	// }
 
 	const isPostOwner = user._id && props.post.postedBy._id === user._id;
 
@@ -75,14 +76,22 @@ const Post = (props) => {
 				<div className="date-time">
 					{new Date(props.post.createdAt).toLocaleString("en-UK")}
 				</div>
-
 				{props.post.media !== "../public/images/null" && (
 					<>
 						<img src={props.post.media}></img>
 					</>
 				)}
 
-				{props.post.message}
+				{edits ? (
+					<EditPost
+						token={props.token}
+						postID={props.post._id}
+						toggleStateChange={props.toggleStateChange}
+						onEdit={handleEdit}
+					/>
+				) : (
+					<div>{props.post.message}</div>
+				)}
 				<br></br>
 				<h5>likes: {props.post.likes.length}</h5>
 				<LikeButton
@@ -101,8 +110,7 @@ const Post = (props) => {
 				/>
 				<EditButton
 					postID={props.post._id}
-					handleDelete={handleDelete}
-					onDelete={props.onDelete}
+					onEdit={handleEdit}
 					showButton={isPostOwner}
 				/>
 				<div className="comments">
