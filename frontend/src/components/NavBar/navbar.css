@@ -1,28 +1,22 @@
-/* #home {
-    color: rgb(0, 0, 0);
+.navbar-container {
     display: flex;
-    margin-right: 575px;
-} */
+    justify-content: center;
+    align-items: center;
+}
 
 #navbar {
     display: flex;
     align-items: center;
     width: 800px;
+    height: 50px;
     background-color: #00843D;
     border-radius: 20px 20px 20px 20px;
     padding: 10px;
     margin: 20px;
-    display: flex;
     text-align: center;
     box-sizing: border-box;
     box-shadow: 5px 5px 20px grey;
 }
-
-/* #navbar > button {
-    border: 2px solid #F7D117;
-    border-radius: 10px 10px 10px 10px;
-    font-size: large;
-} */
 
 .login-nav-item {
     display: flex;
@@ -42,7 +36,7 @@
     padding:5px;
 }
 
-.home-nav-item, .login-nav-item {
+.home-nav-item, .login-nav-item, .signup-nav-item {
     display: flex;
     padding:5px;
     margin-left:10px;
@@ -85,11 +79,21 @@
 
 .navbar-user-image {
     display: flex;
-    padding:10px;
 }
 
 .navbar-user-image img {
-    height: 45px;
-    width: 45px;
-    border-radius: 20px;
+    height: 35px;
+    width: 35px;
+    border: 2px solid #F7D117;
+    border-radius: 15px 15px 15px 15px;
+    /* margin-top: 10px;
+    margin-left:10px;
+    margin-right: 10px; */
+    margin: 10px;
+}
+
+.navbar-user-username {
+    margin:1px;
+    color: #F7D117;
+    display: none;
 }
