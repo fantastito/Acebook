@@ -1,50 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { editPost } from "../../services/posts";
 
-const EditPost = ({ token, userId, toggleStateChange, onEdit, props }) => {
-	const [postMessage, setPostMessage] = useState("");
-	const [errorMessage, setErrorMessage] = useState("");
-	console.log(props, "PROPS");
+const EditPost = (props) => {
+    const [postMessage, setPostMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    console.log(props, "LOOK HERE");
+    useEffect(() => {
+        setPostMessage(props.initialPostMessage);
+    }, [props.initialPostMessage]);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const postData = {
+            userId: props.userId,
+            postId: props.postId,
+            postMessage: postMessage,
+        };
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
+        if (!postData.postMessage) {
+            return setErrorMessage("Cannot edit post without a message");
+        }
 
-		const postData = {
-			userId: userId,
-			postMessage: postMessage,
-		};
+        editPost(props.token, postData)
+            .then((res) => {
+                console.log(res);
+                setPostMessage("");
+                setErrorMessage("");
+                props.toggleStateChange();
+                props.handleEdit(); // Call the onEdit callback
+            })
+            .catch((error) => {
+                console.log("Error submitting post:", error);
+            });
+    };
 
-		if (!postData.postMessage) {
-			return setErrorMessage("Cannot edit post without message");
-		}
-		console.log(props, "props");
-		console.log(postData, "PostDAta");
-		editPost(token, postData)
-			.then((res) => {
-				console.log(res);
-				setPostMessage("");
-				setErrorMessage("");
-				toggleStateChange();
-				onEdit();
-			})
-			.catch((error) => {
-				console.log("Error submitting post:", error);
-			});
-	};
-
-	return (
-		<form onSubmit={handleSubmit}>
-			<textarea
-				name="text"
-				value={postMessage}
-				onChange={(e) => setPostMessage(e.target.value)}
-			></textarea>
-			<br />
-			<button type="submit">Edit post</button>
-			<br />
-			{errorMessage && errorMessage}
-		</form>
-	);
+    return (
+        <form onSubmit={handleSubmit}>
+            <textarea
+                name="text"
+                type="text"
+                value={postMessage}
+                onChange={(e) => setPostMessage(e.target.value)}></textarea>
+            <br />
+            <button type="submit">Edit post</button>
+            <br />
+            {errorMessage && errorMessage}
+        </form>
+    );
 };
 
 export default EditPost;

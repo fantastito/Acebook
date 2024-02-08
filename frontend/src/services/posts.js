@@ -2,88 +2,97 @@
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const getPosts = async (token) => {
-	const requestOptions = {
-		method: "GET",
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-	};
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
 
-	const response = await fetch(`${BACKEND_URL}/posts`, requestOptions);
+    const response = await fetch(`${BACKEND_URL}/posts`, requestOptions);
 
-	if (response.status !== 200) {
-		throw new Error("Unable to fetch posts");
-	}
+    if (response.status !== 200) {
+        throw new Error("Unable to fetch posts");
+    }
 
-	const data = await response.json();
-	return data;
+    const data = await response.json();
+    return data;
 };
 
 export const postComment = async (token, commentText, postId, userId) => {
-	console.log("front end", commentText);
-	const payload = {
-		commentText: commentText,
-		userId: userId,
-	};
+    console.log("front end", commentText);
+    const payload = {
+        commentText: commentText,
+        userId: userId,
+    };
 
-	const requestOptions = {
-		method: "POST",
-		headers: {
-			Authorization: `Bearer ${token}`,
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(payload),
-	};
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    };
 
-	const response = await fetch(
-		`${BACKEND_URL}/posts/${postId}/comments`,
-		requestOptions
-	);
+    const response = await fetch(
+        `${BACKEND_URL}/posts/${postId}/comments`,
+        requestOptions
+    );
 
-	if (response.status !== 200) {
-		throw new Error("Unable to post comment");
-	}
+    if (response.status !== 200) {
+        throw new Error("Unable to post comment");
+    }
 
-	const data = await response.json();
-	return data;
+    const data = await response.json();
+    return data;
 };
 
 export const createPost = async (token, formData) => {
-	const requestOptions = {
-		method: "POST",
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-		body: formData,
-	};
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+    };
 
-	const response = await fetch(`${BACKEND_URL}/posts`, requestOptions);
+    const response = await fetch(`${BACKEND_URL}/posts`, requestOptions);
 
-	if (response.ok) {
-		return "post submitted successfully";
-	} else {
-		throw new Error(`Received status ${response.status} when creating post.`);
-	}
+    if (response.ok) {
+        return "post submitted successfully";
+    } else {
+        throw new Error(
+            `Received status ${response.status} when creating post.`
+        );
+    }
 };
 
-export const editPost = async (token, postData, postId) => {
-	console.log(postData, "hello, postdata");
-	const requestOptions = {
-		method: "PATCH",
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-		body: postData,
-	};
+export const editPost = async (token, postData) => {
+    console.log(postData, "hello, postdata");
+    const payload = {
+        postId: postData.postId,
+        message: postData.postMessage,
+    };
+    const requestOptions = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+    };
 
-	const response = await fetch(
-		`${BACKEND_URL}/posts/${postId}`,
-		requestOptions
-	);
+    const response = await fetch(
+        `${BACKEND_URL}/posts/${postData.postId}`,
+        requestOptions
+    );
 
-	if (response.ok) {
-		return "post edited successfully";
-	} else {
-		throw new Error(`Received status ${response.status} when editing post.`);
-	}
+    if (response.ok) {
+        return "post edited successfully";
+    } else {
+        throw new Error(
+            `Received status ${response.status} when editing post.`
+        );
+    }
 };
