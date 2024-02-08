@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const { generateToken } = require("../lib/token");
+const User = require("../models/user");
 
 const getAllPosts = async (req, res) => {
     const posts = await Post.find()
@@ -20,6 +21,7 @@ const createPost = async (req, res) => {
         filename = req.file.filename;
     }
     const userId = req.body.userId;
+    console.log("userid", userId)
 
     try {
         const post = new Post({
@@ -27,9 +29,15 @@ const createPost = async (req, res) => {
             media: filename ? filename : null,
             postedBy: userId,
         });
-
         await post.save();
         res.status(200).json({ message: "create post successful" });
+
+        const user = await User.findOneAndUpdate(
+            {_id: userId},
+            {$push : {
+                posts: post._id
+            }}
+        )
     } catch (error) {
         res.status(500).json({
             message: "create post error",
