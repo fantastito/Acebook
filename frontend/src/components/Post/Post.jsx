@@ -64,7 +64,7 @@ const Post = (props) => {
                         <div className="username-time-container">
                             <div className="post-username">
                             <Link to={`/users/${props.postedBy.username}`} className="post-username">
-                                <h4>{props.postedBy.username}</h4>
+                                {props.postedBy.username}
                             </Link>
                             </div>
                             <div className="date-time">
@@ -115,20 +115,16 @@ const Post = (props) => {
                             </div>
                     </div>
 
-                <div className="comments">
-                    <p> comments </p>
-                    <button onClick={addCommentClick}>add comment</button>
+                    <div className="add-comment-container">
+                        <AddComment
+                            postId={props.post._id}
+                            toggleStateChange={props.toggleStateChange}
+                            post_userId={props.postedBy._id}
+                        />
+                    </div>
 
-                    {showCommentBox && (
-                        <div className="comment-box">
-                            <AddComment
-                                postId={props.post._id}
-                                toggleStateChange={props.toggleStateChange}
-                                post_userId={props.postedBy._id}
-                            />
-                        </div>
-                    )}
-                    <ul>
+                    <div className="comments-container">
+                        
                         {sortedComments.length > 0 && (
                             <Comment
                                 _id={sortedComments[0]._id}
@@ -161,7 +157,6 @@ const Post = (props) => {
                         {showMoreComments && (
                             <button onClick={hideCommentsClick}>hide</button>
                         )}
-                    </ul>
                 </div>
             </article>
         </div>

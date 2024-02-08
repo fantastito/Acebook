@@ -1,0 +1,25 @@
+
+.text-area-container {
+    display:flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.text-area {
+    border-radius: 5px;
+    resize: none;
+    padding: 5px
+}
+
+.add-comment-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-comment-button-container {
+    padding: 5px 5px 10px 5px;
+}
+
+.submit-comment-button {
+}

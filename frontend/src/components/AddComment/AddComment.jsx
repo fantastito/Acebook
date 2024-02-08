@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { postComment } from "../../services/posts";
 import { createNotification } from "../../services/user";
+import './AddComment.css'
 
 export default function AddComment({ postId, toggleStateChange, post_userId }) {
 	const [commentText, setCommentText] = useState("");
@@ -45,16 +46,22 @@ export default function AddComment({ postId, toggleStateChange, post_userId }) {
 
 	return (
 		<>
-			{errorMessage && <p>{errorMessage}</p>}
-			<form onSubmit={submitComment}>
-				<input
+		{errorMessage && <p>{errorMessage}</p>}
+		<form onSubmit={submitComment}>
+			<div className="text-area-container">
+				<textarea
+					className="text-area"
 					type="text"
 					placeholder="g'day"
 					value={commentText}
 					onChange={handleChange}
 				/>
-				<button type="submit">Comment</button>
-			</form>
+			</div>
+			<div className="submit-comment-button-container">
+				<button className="submit-commit-button" type="submit">Comment</button>
+			</div>
+		</form>
+
 		</>
 	);
 }
