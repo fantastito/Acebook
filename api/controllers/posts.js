@@ -73,8 +73,9 @@ const postComment = async (req, res) => {
 
 const likePost = async (req, res) => {
     const postID = req.body.postID;
-    const userID = req.user_id;
+    const userID = req.body.userId
 
+    console.log("be", userID)
     const alreadyLiked = await Post.findOne({
         _id: postID,
         likes: userID,

@@ -99,6 +99,7 @@ const Post = (props) => {
                                 post_userId={props.postedBy._id}
                                 loggedInUsername={props.loggedInUsername}
                                 token={props.token}
+                                userId={props.userId}
                             />
                             </div>
                             <div className="like-number">
