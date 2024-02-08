@@ -55,12 +55,12 @@
 }
 
 .post-image-container{
-
+    padding-bottom: 10px;
 }
 
 .post-image-container img{
-    max-width: 100px;
-    max-width: 100px;
+    max-width: 200x;
+    max-width: 200px;
 
 }
 
