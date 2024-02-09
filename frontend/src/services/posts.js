@@ -66,7 +66,6 @@ export const createPost = async (token, formData) => {
 	}
 };
 
-
 export const editPost = async (token, postData) => {
 	const payload = {
 		postId: postData.postId,
@@ -80,33 +79,6 @@ export const editPost = async (token, postData) => {
 		},
 		body: JSON.stringify(payload),
 	};
-
-export const deleteThePost = async (postId, token) => {
-  try {
-      const requestOptions = {
-        method: "DELETE",
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ postID: postId }),
-      }
-      const response = await fetch(`${BACKEND_URL}/posts/${postId}`, requestOptions)
-
-      if (response.ok) {
-        return "post deleted"
-      } else {
-        throw new Error(`delete post HTTP error! Status: ${response.status}`);
-      }
-  } catch (error) {
-      console.error("Error deleting post:", error);
-  }
-
-};
-
-  
-
-
 	const response = await fetch(
 		`${BACKEND_URL}/posts/${postData.postId}`,
 		requestOptions
@@ -116,5 +88,29 @@ export const deleteThePost = async (postId, token) => {
 		return "post edited successfully";
 	} else {
 		throw new Error(`Received status ${response.status} when editing post.`);
+	}
+};
+export const deleteThePost = async (postId, token) => {
+	try {
+		const requestOptions = {
+			method: "DELETE",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ postID: postId }),
+		};
+		const response = await fetch(
+			`${BACKEND_URL}/posts/${postId}`,
+			requestOptions
+		);
+
+		if (response.ok) {
+			return "post deleted";
+		} else {
+			throw new Error(`delete post HTTP error! Status: ${response.status}`);
+		}
+	} catch (error) {
+		console.error("Error deleting post:", error);
 	}
 };
