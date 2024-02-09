@@ -22,13 +22,6 @@ const Post = (props) => {
         setEdits(!edits);
     };
 
-    const handleCancelEdit = async (setButtonTextCallback) => {
-        // Implement the logic to cancel the edit (e.g., reset form values)
-        // You can also make an API call or perform any other necessary actions
-        // After successfully canceling the edit, call setButtonTextCallback("Edit");
-        setButtonTextCallback("Edit");
-    };
-
     const handleDelete = () => {
         setDeletes(!deletes);
     };
@@ -122,7 +115,6 @@ const Post = (props) => {
                     handleEdit={handleEdit}
                     showButton={isPostOwner}
                     onEdit={props.onEdit}
-                    handleCancelEdit={handleCancelEdit}
                 />
                 <div className="comments">
                     <p> comments </p>

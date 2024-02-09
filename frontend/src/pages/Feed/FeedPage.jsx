@@ -23,11 +23,10 @@ export const FeedPage = () => {
         // Update state or perform any other necessary actions
         toggleStateChange();
     };
-    // const handlePostEdit = (setButtonTextCallback) => {
-    //     // Update state or perform any other necessary actions
-    //     toggleStateChange();
-    //     setButtonTextCallback("Edit"); // Set the buttonText back to "Edit"
-    // };
+    const handlePostEdit = () => {
+        // Update state or perform any other necessary actions
+        toggleStateChange();
+    };
 
     useEffect(() => {
         if (token) {
@@ -74,6 +73,7 @@ export const FeedPage = () => {
                             postedBy={post.postedBy}
                             toggleStateChange={toggleStateChange}
                             onDelete={handlePostDelete}
+                            onEdit={handlePostEdit}
                             loggedInUsername={user.username}
                             token={token}
                             liked={liked}
