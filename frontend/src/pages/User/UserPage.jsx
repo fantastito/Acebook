@@ -30,8 +30,6 @@ export const UserPage = () => {
                 .then((data) => {
                     setUser(data.user);
                     setToken(data.token);
-                    // setProfilePicture(data.user.image)
-                    // setBio(data.user.bio)
                     window.localStorage.setItem("token", data.token);                })
                 .catch((err) => {
                     console.error(err);
@@ -55,7 +53,9 @@ export const UserPage = () => {
 
         return (
             <>
-            <Navbar />
+            <Navbar 
+                stateChange={stateChange}
+            />
             
                 <div className="user-page-container">
                     

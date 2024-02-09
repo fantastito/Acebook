@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './navbar.css';
 import SearchNavItem from './SearchNavItem';
 import HomeNavItem from './HomeNavItem';
@@ -12,11 +12,15 @@ import UserNavItem from './UserNavItem';
 import './navbar.css'
 
 
-const Navbar = () => {
+const Navbar = ({stateChange}) => {
     const [token, setToken] = useState(window.localStorage.getItem("token"))
     const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("user")))
     const [showSearchResults, setShowSearchResults] = useState(false)
     const [foundUsers, setFoundUsers] = useState([])
+
+    useEffect(() => {
+      setUser(JSON.parse(window.localStorage.getItem("user")));
+  }, [stateChange]);
 
     const handleSearch = (searchResults) => {
       setFoundUsers(searchResults)

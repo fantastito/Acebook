@@ -8,21 +8,20 @@ export default function EditProfilePictureModal({image, username, toggleEditPict
     const [file, setFile] = useState()
 
     const handleUpload = () => {
-        // console.log("handling upload with file", file)
         const formData = new FormData();
         formData.append('file', file)
         uploadImage(formData, username)
             .then(res => res.json())
             .then(data => {
                 console.log(data.image)
-                // handleImageUpdate(data.image)
+                const user = JSON.parse(window.localStorage.getItem("user"))
+                user.image = data.image
+                window.localStorage.setItem("user", JSON.stringify(user));
                 toggleEditPictureModal()
                 triggerStateChange()
             });
         }
     
-
-
     const toggleModal = () => {
         setModal(!modal)
     }
@@ -37,7 +36,6 @@ export default function EditProfilePictureModal({image, username, toggleEditPict
                 </div>
 
             <div className="image-input">
-                {/* <h4>choose profile picture</h4> */}
                 <input 
                     type="file" 
                     name="file" 
@@ -50,8 +48,6 @@ export default function EditProfilePictureModal({image, username, toggleEditPict
             </div>
                 
             </div>
-
-
         </>
     )
 
