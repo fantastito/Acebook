@@ -5,8 +5,11 @@ import React, { useState } from "react";
 import AddComment from "../AddComment/AddComment";
 import Comment from "../Comment/Comment";
 import DeleteButton from "../DeleteButton/DeleteButton";
+
 import timeFromNow from "../../utils/TimeFromNow";
 import { Link } from "react-router-dom";
+import EditPost from "../EditPost/EditPost";
+import EditButton from "../EditButton/EditButton";
 
 const Post = (props) => {
 
@@ -16,10 +19,15 @@ const Post = (props) => {
     const [showMoreComments, setShowMoreComments] = useState(false);
     const [hideComments, setHideComments] = useState(false);
     const [deletes, setDeletes] = useState(false);
+  
 
     const handleDelete = () => {
         setDeletes(!deletes);
     };
+  
+  const handleEdit = () => {
+		props.setEdits(!props.edits);
+	};
 
     const user = JSON.parse(window.localStorage.getItem("user"));
 
@@ -82,7 +90,20 @@ const Post = (props) => {
                             )}
                         </div>
                         <div className="post-text">
-                            {props.post.message}
+                            {props.edits ? (
+					<EditPost
+						token={props.token}
+						userId={user._id}
+						postId={props.post._id}
+						toggleStateChange={props.toggleStateChange}
+						handleEdit={handleEdit}
+						onEdit={props.onEdit}
+						initialPostMessage={props.post.message}
+						edits={props.edits}
+					/>
+				) : (
+					<div>{props.post.message}</div>
+				)}
                         </div>
                     </div>
 
@@ -113,6 +134,13 @@ const Post = (props) => {
                                     handleDelete={handleDelete}
                                     onDelete={props.onDelete}
                                     showButton={isPostOwner}
+                                />
+                                <EditButton
+                                    postID={props.post._id}
+                                    handleEdit={handleEdit}
+                                    showButton={isPostOwner}
+                                    onEdit={props.onEdit}
+                                    edits={props.edits}
                                 />
                             </div>
                     </div>
@@ -168,7 +196,6 @@ const Post = (props) => {
             </article>
         </div>
     );
-
 };
 
 export default Post;

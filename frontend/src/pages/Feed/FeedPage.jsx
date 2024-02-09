@@ -8,46 +8,47 @@ import './FeedPage.css'
 
 
 export const FeedPage = () => {
-    const [posts, setPosts] = useState([]);
-    const [token, setToken] = useState(window.localStorage.getItem("token"));
-    const [user, setUser] = useState(
-        JSON.parse(window.localStorage.getItem("user"))
-    );
-    const [stateChange, setStateChange] = useState(false);
+	const [posts, setPosts] = useState([]);
+	const [token, setToken] = useState(window.localStorage.getItem("token"));
+	const [user, setUser] = useState(
+		JSON.parse(window.localStorage.getItem("user"))
+	);
+	const [stateChange, setStateChange] = useState(false);
 
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
-    const toggleStateChange = () => {
-        setStateChange(!stateChange);
-    };
+	const toggleStateChange = () => {
+		setStateChange(!stateChange);
+	};
 
-    const handlePostDelete = () => {
-        // Update state or perform any other necessary actions
-        toggleStateChange();
-    };
+	const handlePostDelete = () => {
+		toggleStateChange();
+	};
+	const handlePostEdit = () => {
+		toggleStateChange();
+	};
 
-    useEffect(() => {
-        if (token) {
-            getPosts(token)
-                .then((data) => {
-                    const sortedPosts = data.posts.sort(
-                        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-                    );
-                    setPosts(sortedPosts.reverse());
-                    setToken(data.token);
-                    window.localStorage.setItem("token", data.token);
-                })
-                .catch((err) => {
-                    console.err(err);
-                });
-        } else {
-            navigate("/login");
-        }
-    }, [stateChange]);
+	const [edits, setEdits] = useState(false);
 
-    if (!token) {
-        return;
-    }
+	useEffect(() => {
+		if (token) {
+			getPosts(token)
+				.then((data) => {
+					const sortedPosts = data.posts.sort(
+						(a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+					);
+					setPosts(sortedPosts.reverse());
+					setToken(data.token);
+					window.localStorage.setItem("token", data.token);
+				})
+				.catch((err) => {
+					console.err(err);
+				});
+		} else {
+			navigate("/login");
+		}
+	}, [stateChange]);
+
 
     return (
         <div className="feedpage" data-testid="feed-page">
@@ -78,6 +79,9 @@ export const FeedPage = () => {
                             token={token}
                             liked={liked}
                             userId={user._id}
+onEdit={handlePostEdit}
+							edits={edits}
+							setEdits={setEdits}
                         />
                     );
                 })}
@@ -85,4 +89,5 @@ export const FeedPage = () => {
             
         </div>
     );
+
 };

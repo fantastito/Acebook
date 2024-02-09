@@ -128,7 +128,24 @@ const deletePost = async (req, res) => {
     }
 };
 
-const editPost = "SOMETHING";
+const editPost = async (req, res) => {
+    const postID = req.body.postId;
+    console.log(req.body, "backend");
+    const newPostMessage = req.body.message;
+
+    try {
+        const updatedPost = await Post.findOneAndUpdate(
+            { _id: postID },
+            { $set: { message: newPostMessage } },
+            { new: true }
+        );
+        res.status(200).json({ message: "Post updated" });
+    } catch (error) {
+        res.status(500).json({
+            message: "An error occurred while updating the post.",
+        });
+    }
+};
 
 const PostsController = {
     getAllPosts: getAllPosts,
@@ -136,6 +153,7 @@ const PostsController = {
     likePost: likePost,
     postComment: postComment,
     deletePost: deletePost,
+    editPost: editPost,
 };
 
 module.exports = PostsController;
