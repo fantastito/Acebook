@@ -23,17 +23,18 @@ export const login = async (email, password) => {
 
 		return data;
 	} else {
-		throw new Error(
-			`Received status ${response.status} when logging in. Expected 201`
+		const errorData = await response.json();
+		throw new Error(errorData.message || `Received status ${response.status} when signing up. Expected 201`
 		);
 	}
 };
 
-export const signup = async (username, email, password) => {
+export const signup = async (username, email, password, defaultUserImage) => {
 	const payload = {
 		username: username,
 		email: email,
 		password: password,
+		defaultUserImage: defaultUserImage
 	};
 
 	const requestOptions = {
@@ -47,11 +48,11 @@ export const signup = async (username, email, password) => {
 	let response = await fetch(`${BACKEND_URL}/users`, requestOptions);
 
 	// docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-	if (response.status === 201) {
+	if (response.ok) {
 		return;
 	} else {
-		throw new Error(
-			`Received status ${response.status} when signing up. Expected 201`
+		const errorData = await response.json();
+		throw new Error(errorData.message || `Received status ${response.status} when signing up. Expected 201`
 		);
 	}
 };

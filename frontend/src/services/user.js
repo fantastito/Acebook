@@ -28,10 +28,17 @@ export const searchUsers = async (searchQuery) => {
 		headers: { "Content-Type": "application/json" },
 	};
 
+
 	const response = await fetch(
 		`${BACKEND_URL}/users?search=${searchQuery}`,
 		requestOptions
 	);
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Unable to fetch user");
+    }
+
 
 	if (response.status !== 200) {
 		throw new Error("Unable to fetch user");
@@ -87,144 +94,135 @@ export const editBio = async (bioText, username) => {
 	}
 };
 
-export const addFriend = async (username, requestingUserId, token) => {
-	const payload = {
-		requestingUserId: requestingUserId,
-	};
 
-	const requestOptions = {
-		method: "POST",
-		headers: {
-			Authorization: `Bearer ${token}`,
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(payload),
-	};
+}
 
-	let response = await fetch(
-		`${BACKEND_URL}/users/${username}/friends`,
-		requestOptions
-	);
 
-	if (!response.ok) {
-		const errorData = await response.json();
-		throw new Error(`Failed to add friend: ${JSON.stringify(errorData)}`);
-	}
+export const addFriend = async(receivingUserId, requestingUserId, username, token) => {
 
-	const data = await response.json();
-	return data;
-};
+    const payload = {
+        receivingUserId: receivingUserId,
+        requestingUserId: requestingUserId
+    }
 
-export const removeFriend = async (username, requestingUserId, token) => {
-	const payload = {
-		requestingUserId: requestingUserId,
-	};
+    const requestOptions ={
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    }
 
-	const requestOptions = {
-		method: "DELETE",
-		headers: {
-			Authorization: `Bearer ${token}`,
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(payload),
-	};
+    let response = await fetch(`${BACKEND_URL}/users/${username}/friends`, requestOptions)
 
-	let response = await fetch(
-		`${BACKEND_URL}/users/${username}/friends`,
-		requestOptions
-	);
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Failed to add friend: ${JSON.stringify(errorData)}`);
+    }
 
-	if (!response.ok) {
-		const errorData = await response.json();
-		throw new Error(`Failed to remove friend: ${JSON.stringify(errorData)}`);
-	}
+    const data = await response.json();
+    return data;
 
-	const data = await response.json();
-	return data;
-};
+}
 
-export const createNotification = async ({
-	username,
-	entity_userId,
-	token,
-	notificationType,
-}) => {
-	let notificationMessage;
+export const removeFriend = async(receivingUserId, requestingUserId, username, token) => {
+    const payload = {
+        receivingUserId: receivingUserId,
+        requestingUserId: requestingUserId
+    }
 
-	switch (notificationType) {
-		case "post-like":
-			notificationMessage = `${username} liked your post`;
-			break;
+    const requestOptions = {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    }
 
-		case "post-unlike":
-			notificationMessage = `${username} un-liked your post`;
-			break;
+    let response = await fetch(`${BACKEND_URL}/users/${username}/friends`, requestOptions)
 
-		case "post-comment":
-			notificationMessage = `${username} commented on your post`;
-			break;
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Failed to remove friend: ${JSON.stringify(errorData)}`);
+    }
 
-		case "friend-request":
-			notificationMessage = `${username} sent you a friend request`;
-			break;
-	}
+    const data = await response.json();
+    return data;
 
-	const payload = {
-		entity_userId: entity_userId,
-		notificationMessage: notificationMessage,
-	};
+}
 
-	const requestOptions = {
-		method: "POST",
-		headers: {
-			Authorization: `Bearer ${token}`,
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(payload),
-	};
+export const createNotification = async({username, entity_userId, token, notificationType}) => {
+    let notificationMessage;
 
-	let response = await fetch(
-		`${BACKEND_URL}/users/${username}/notifications`,
-		requestOptions
-	);
+    switch(notificationType) {
+        case "post-like":
+            notificationMessage = `${username} liked your post`
+            break;
+        
+        case "post-unlike":
+            notificationMessage = `${username} un-liked your post`
+            break;
 
-	if (!response.ok) {
-		const errorData = await response.json();
-		throw new Error(
-			`Failed to create notification: ${JSON.stringify(errorData)}`
-		);
-	}
+        case "post-comment":
+            notificationMessage = `${username} commented on your post`
+            break;
+        
+        case "friend-request":
+            notificationMessage = `${username} sent you a friend request`
+            break;
+    }
 
-	const data = await response.json();
-	return data;
-};
+    const payload = {
+        entity_userId: entity_userId,
+        notificationMessage: notificationMessage
+    }
 
-export const deleteNotification = async (username, notificationId, token) => {
-	const payload = {
-		notificationId: notificationId,
-	};
+    const requestOptions ={
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    }
 
-	const requestOptions = {
-		method: "DELETE",
-		headers: {
-			Authorization: `Bearer ${token}`,
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(payload),
-	};
+    let response = await fetch(`${BACKEND_URL}/users/${username}/notifications`, requestOptions)
 
-	let response = await fetch(
-		`${BACKEND_URL}/users/${username}/notifications`,
-		requestOptions
-	);
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Failed to create notification: ${JSON.stringify(errorData)}`);
+    }
 
-	if (!response.ok) {
-		const errorData = await response.json();
-		throw new Error(
-			`Failed to delete notification: ${JSON.stringify(errorData)}`
-		);
-	}
+    const data = await response.json();
+    return data;
+}
 
-	const data = await response.json();
-	return data;
-};
+export const deleteNotification = async(username, notificationId, token) => {
+
+    const payload = {
+        notificationId: notificationId
+    }
+
+    const requestOptions = {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    }
+
+    let response = await fetch(`${BACKEND_URL}/users/${username}/notifications`, requestOptions)
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Failed to delete notification: ${JSON.stringify(errorData)}`);
+    }
+
+    const data = await response.json();
+    return data;
+
+}
+

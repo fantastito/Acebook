@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const { generateToken } = require("../lib/token");
+const User = require("../models/user");
 
 const getAllPosts = async (req, res) => {
     const posts = await Post.find()
@@ -20,6 +21,7 @@ const createPost = async (req, res) => {
         filename = req.file.filename;
     }
     const userId = req.body.userId;
+    console.log("userid", userId)
 
     try {
         const post = new Post({
@@ -27,9 +29,15 @@ const createPost = async (req, res) => {
             media: filename ? filename : null,
             postedBy: userId,
         });
-
         await post.save();
         res.status(200).json({ message: "create post successful" });
+
+        const user = await User.findOneAndUpdate(
+            {_id: userId},
+            {$push : {
+                posts: post._id
+            }}
+        )
     } catch (error) {
         res.status(500).json({
             message: "create post error",
@@ -65,8 +73,9 @@ const postComment = async (req, res) => {
 
 const likePost = async (req, res) => {
     const postID = req.body.postID;
-    const userID = req.user_id;
+    const userID = req.body.userId
 
+    console.log("be", userID)
     const alreadyLiked = await Post.findOne({
         _id: postID,
         likes: userID,
@@ -107,15 +116,12 @@ const likePost = async (req, res) => {
 
 const deletePost = async (req, res) => {
     const postID = req.body.postID;
-    const userID = req.user_id;
+
     try {
-        const post = await Post.findOne({ _id: postID, postedBy: userID });
+        const post = await Post.findOneAndDelete({ _id: postID });
         if (!post) {
-            return res
-                .status(404)
-                .json({ message: "You are not this post's owner" });
+            return res.status(404).json({ message: "Post not found" });
         }
-        await Post.deleteOne({ _id: postID });
         res.status(200).json({ message: "Post deleted" });
     } catch (error) {
         res.status(500).json({ message: "Error deleting post" });

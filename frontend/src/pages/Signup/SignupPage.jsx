@@ -9,17 +9,19 @@ export const SignupPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
+    const defaultUserImage = "kangaroo-face.png"
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await signup(username, email, password);
-            console.log("redirecting...:");
+            await signup(username, email, password, defaultUserImage);
+            // Set the signup success flag in local storage
+            localStorage.setItem("signupSuccess", "true");
             navigate("/login");
         } catch (err) {
             console.error(err);
             navigate("/signup");
+            alert(err);
         }
     };
 
@@ -38,7 +40,7 @@ export const SignupPage = () => {
     return (
         <>
             <Navbar />
-            <h2>Signup</h2>
+            <h2>Sign up</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username"></label>
                 <input
@@ -58,7 +60,7 @@ export const SignupPage = () => {
                     onChange={handleEmailChange}
                 />
 
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password"></label>
                 <input
                     placeholder="Password"
                     id="password"

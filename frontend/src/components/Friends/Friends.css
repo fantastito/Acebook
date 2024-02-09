@@ -1,0 +1,38 @@
+.friend-container{
+    display: flex;
+    flex-direction: row;
+
+    margin: 10px
+
+}
+
+.friend-image-container{
+    display:flex;
+
+}
+
+.friend-image {
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 10px;
+    justify-content: center;
+}
+
+
+
+.friend-username {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    color: black;
+    
+}
+
+.friend-container:hover{
+
+    background-color: #f0f0f0;
+    width: 90%;
+}

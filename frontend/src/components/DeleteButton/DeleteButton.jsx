@@ -1,29 +1,19 @@
+
+import ConfirmDeleteModal from './ConfirmDeleteModal';
+// import './DeleteButton.css'
+import { useState } from 'react';
+import './ConfirmDeleteModal.css'
+import { deleteThePost } from '../../services/posts';
+
 const DeleteButton = (props) => {
-	// const [like, setLike] = useState(props.liked);
-	const deleteThePost = async (props) => {
-		try {
-			console.log(props);
-			const response = await fetch("http://localhost:3000/posts/:postId", {
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: "Bearer " + window.localStorage.getItem("token"),
-				},
-				body: JSON.stringify({ postID: props.postID }),
-			});
+    const [confirmDeleteModal, setConfirmDeleteModal] = useState(false);
+    
+    const handleDeletePostTrue = async () => {
+        try {
+            const result = await deleteThePost(props.postID, props.token);
+            console.log(result)
+            setConfirmDeleteModal(false);
 
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			}
-		} catch (error) {
-			console.error("Error fetching data:", error);
-		}
-	};
-
-	const handleClick = async () => {
-		try {
-			await deleteThePost(props);
-			console.log("Post deleted");
 
 			// Call the provided onDelete callback to trigger a re-render
 			if (props.onDelete) {
@@ -34,9 +24,45 @@ const DeleteButton = (props) => {
 		}
 	};
 
-	return props.showButton ? (
-		<button onClick={handleClick}>Delete</button>
-	) : null;
+
+    const handleDeletePost = () => {
+        setConfirmDeleteModal(true)
+    }
+
+    const handleDeletePostFalse = () => {
+        setConfirmDeleteModal(false)
+    }
+
+    return props.showButton ? (
+        <>
+        <button onClick={handleDeletePost}>
+            <i className="fa fa-trash" aria-hidden="true"></i>
+        </button>
+
+        { confirmDeleteModal && 
+
+            <div className="confirm-delete-modal">
+
+                <div 
+                    onClick={()=> {setConfirmDeleteModal(false)}}
+                    className="overlay">
+                </div>
+
+                <div className="modal-content">
+    
+                    <ConfirmDeleteModal 
+                        handleDeletePostTrue={handleDeletePostTrue}
+                        handleDeletePostFalse={handleDeletePostFalse}
+                    />
+                </div>
+
+            </div>
+
+        
+        }
+        </>
+    ) : null;
+
 };
 
 export default DeleteButton;

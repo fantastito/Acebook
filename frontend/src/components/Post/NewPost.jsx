@@ -5,7 +5,7 @@ import './NewPost.css'
 
 const NewPost = ( {token, userId, toggleStateChange} ) => {
     const [postMessage, setPostMessage] = useState('');
-    const [file, setFile] = useState()
+    const [file, setFile] = useState(null)
     const [uploadImage, setuploadImage] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
 
@@ -17,13 +17,14 @@ const NewPost = ( {token, userId, toggleStateChange} ) => {
             formData.append('file', file)
         } else {
             if(!postMessage) {
-                return setErrorMessage("cannot post empty comment")
+                return alert("cannot post empty comment")
             }
         }
         if(postMessage){
             
             formData.append('postMessage', postMessage)
         }
+        console.log("userId", userId)
         formData.append("userId", userId)
 
         createPost(token, formData)
@@ -32,6 +33,7 @@ const NewPost = ( {token, userId, toggleStateChange} ) => {
                 setPostMessage('')
                 setFile(null)
                 setErrorMessage('')
+                setuploadImage(false)
                 toggleStateChange()
 
             })
@@ -41,36 +43,49 @@ const NewPost = ( {token, userId, toggleStateChange} ) => {
     }
 
     const handleUploadImageClick = () => {
-        // event.stopPropagation();
         setuploadImage(!uploadImage)
+    }
+
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0])
     }
 
     
     return (
-        <form onSubmit={handleSubmit}>
-            <textarea
-                name="text"
-                value = {postMessage}
-                onChange={(message) => setPostMessage(message.target.value)}
-            >
-            </textarea>
-            <br></br>
-            <button type="button" onClick={handleUploadImageClick}>
-                <i className="fa-solid fa-image"></i>
-            </button>
+        <div className="new-post-container">
+            <form onSubmit={handleSubmit}>
+                <div className="text-area-container">
+                    <textarea
+                        className="new-post-text-area"
+                        name="text"
+                        value = {postMessage}
+                        onChange={(message) => setPostMessage(message.target.value)}
+                    >
+                    </textarea>
+                </div>
 
-            {uploadImage &&  
-            <input 
-                type="file" 
-                name="file" 
-                onChange={e => setFile(e.target.files[0])}
-            />
-            }
-            <br></br>
-            <button type='submit'>Post</button>
-            <br></br>
-            {errorMessage && errorMessage}
-        </form>
+                <div className="image-button-container">
+                    <button type="button" onClick={handleUploadImageClick}>
+                        <i className="fa-solid fa-image"></i>
+                    </button>
+                </div>
+
+                {uploadImage &&  
+                    <>
+                    <input 
+                        type="file" 
+                        name="file"
+                        accept="image/png, image/jpeg" 
+                        onChange={handleFileChange}
+                    />
+                    </>
+                }
+                <div className="post-button-container">
+                    <button type='submit' className="post-button">Post</button>
+                </div>
+                {errorMessage && errorMessage}
+            </form>
+        </div>
     )
 
 

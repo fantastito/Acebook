@@ -4,6 +4,8 @@ import { getPosts } from "../../services/posts";
 import NewPost from "../../components/Post/NewPost";
 import Post from "../../components/Post/Post";
 import Navbar from "../../components/NavBar/navbar";
+import './FeedPage.css'
+
 
 export const FeedPage = () => {
 	const [posts, setPosts] = useState([]);
@@ -47,42 +49,45 @@ export const FeedPage = () => {
 		}
 	}, [stateChange]);
 
-	if (!token) {
-		return;
-	}
 
-	return (
-		<div className="feedpage" data-testid="feed-page">
-			<div className="navbar">
-				<Navbar />
-			</div>
-			<h1>Posts</h1>
-			<div className="feed" role="feed">
-				<NewPost
-					token={token}
-					userId={user._id}
-					toggleStateChange={toggleStateChange}
-				/>
+    return (
+        <div className="feedpage" data-testid="feed-page">
+            <div className="navbar">
+                <Navbar />
+            </div>
 
-				{posts.map((post) => {
-					const liked = post.likes.includes(user._id);
-					return (
-						<Post
-							key={post._id}
-							post={post}
-							postedBy={post.postedBy}
-							toggleStateChange={toggleStateChange}
-							onDelete={handlePostDelete}
-							onEdit={handlePostEdit}
-							loggedInUsername={user.username}
-							token={token}
-							liked={liked}
+            <div className="feedpage-new-post-container">
+                <NewPost
+                    token={token}
+                    userId={user._id}
+                    toggleStateChange={toggleStateChange}
+                />
+            </div>
+
+            <div className="feedpage-posts-container">
+                {posts.map((post) => {
+                    const liked = post.likes.includes(user._id);
+                    console.log(liked)
+                    return (
+                        <Post
+                            key={post._id}
+                            post={post}
+                            postedBy={post.postedBy}
+                            toggleStateChange={toggleStateChange}
+                            onDelete={handlePostDelete}
+                            loggedInUsername={user.username}
+                            token={token}
+                            liked={liked}
+                            userId={user._id}
+onEdit={handlePostEdit}
 							edits={edits}
 							setEdits={setEdits}
-						/>
-					);
-				})}
-			</div>
-		</div>
-	);
+                        />
+                    );
+                })}
+            </div>
+            
+        </div>
+    );
+
 };

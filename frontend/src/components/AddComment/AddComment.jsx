@@ -2,7 +2,9 @@ import { useState } from "react";
 import { postComment } from "../../services/posts";
 import { createNotification } from "../../services/user";
 
-export default function AddComment({ postId, toggleStateChange, post_userId }) {
+import './AddComment.css'
+
+export default function AddComment({ postId, toggleStateChange, post_userId, triggerStateChange }) {
 	const [commentText, setCommentText] = useState("");
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
 	const [user, setUserId] = useState(
@@ -21,9 +23,13 @@ export default function AddComment({ postId, toggleStateChange, post_userId }) {
 			try {
 				const result = await postComment(token, commentText, postId, user._id);
 				console.log(result);
-				toggleStateChange();
+				setCommentText("");
+				toggleStateChange ? toggleStateChange() : null
+				triggerStateChange ? triggerStateChange() : null
+				console.log("yes")
 
 				try {
+					console.log("try", user.username, post_userId, token);
 					const notificationResult = await createNotification({
 						username: user.username,
 						entity_userId: post_userId,
@@ -43,16 +49,22 @@ export default function AddComment({ postId, toggleStateChange, post_userId }) {
 
 	return (
 		<>
-			{errorMessage && <p>{errorMessage}</p>}
-			<form onSubmit={submitComment}>
-				<input
+		{errorMessage && <p>{errorMessage}</p>}
+		<form onSubmit={submitComment}>
+			<div className="text-area-container">
+				<textarea
+					className="text-area"
 					type="text"
 					placeholder="g'day"
 					value={commentText}
 					onChange={handleChange}
 				/>
-				<button type="submit">Submit</button>
-			</form>
+			</div>
+			<div className="submit-comment-button-container">
+				<button className="submit-commit-button" type="submit">Comment</button>
+			</div>
+		</form>
+
 		</>
 	);
 }

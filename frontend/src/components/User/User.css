@@ -1,6 +1,42 @@
-.User img {
-    max-width: 200px;
-    max-height: 200px;
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+}
 
+.profile-image-container img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    justify-content: center;
+}
+
+
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    padding: 10px;
+    margin: 5px;
+}
+
+.user-name {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.224);
+}
+
+.friend-button-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px 5px 5px 5px;
+    align-items: center;
+}
+
+.friend-button {
+    padding: 5px;
 }
 
