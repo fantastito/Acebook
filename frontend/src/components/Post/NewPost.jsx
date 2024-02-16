@@ -58,6 +58,7 @@ const NewPost = ( {token, userId, toggleStateChange} ) => {
                     <textarea
                         className="new-post-text-area"
                         name="text"
+                        placeholder="What's on your mind?"
                         value = {postMessage}
                         onChange={(message) => setPostMessage(message.target.value)}
                     >
