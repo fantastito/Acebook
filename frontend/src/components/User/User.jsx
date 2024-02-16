@@ -65,10 +65,11 @@ const User = ({_id, username, email, friends, image, bio, posts, loggedInUserId,
                 {username}
             </div>
             <div className="user-email">
-                <p>Email: {email}</p>
+                <p></p>
+                {email}
             </div>
             <div className="user-bio">
-                <p>Bio:</p>
+                <p>About {username}:</p>
                 {bio}
             </div>
 
