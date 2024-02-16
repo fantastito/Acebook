@@ -17,7 +17,7 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f0d552;
+  background-color: #efeef3;
 
 }
 
@@ -31,7 +31,7 @@ h1, h2 {
 }
 
 h3 {
-  color: #F7D117;
+  color: #274C77;
 }
 
 /* input {

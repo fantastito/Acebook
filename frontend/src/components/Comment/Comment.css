@@ -13,16 +13,15 @@
 }
 
 .comment-user-image-container {
-    
-
+    padding: 10px;
 }
 
 .comment-user-image-container img {
     width: 40px;
     height: 40px;
     object-fit: cover;
+    border: 2px solid #274C77;
     border-radius: 50%;
-    padding: 10px;
 }
 
 .comment-username-time{
@@ -40,8 +39,6 @@
     padding-left: 65px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.224);
-
-
 }
 
 

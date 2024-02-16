@@ -76,13 +76,13 @@ async function seedDatabase() {
         },
 
         {
-            message: "Just whipped up some heavenly jacket potatoes for dinner, crispy on the outside, fluffy on the inside.",
-            media: 'jacket-potato.jpeg',
+            message: "Just whipped up some hot, heavenly, fluffy pancakes for brunch.",
+            media: 'pancakes.jpg',
             likes: [`${addedUsers[1]._id}`, `${addedUsers[4]._id}`], // array of user IDs who liked the post
             postedBy: addedUsers[2]._id,
             comments: [
-                { message: '#jacketpotatolife', user: addedUsers[1]._id },
-                { message: 'Not for me! Roastie all the way', user: addedUsers[0]._id },
+                { message: '#pancakeslife', user: addedUsers[1]._id },
+                { message: 'Not for me! Crêpes all the way', user: addedUsers[0]._id },
                 { message: 'Count me in 😋', user: addedUsers[3]._id }
             ],
         },
@@ -126,3 +126,11 @@ async function seedDatabase() {
 };
 
 module.exports = seedDatabase;
+
+// Images list:
+// Chad Montano (@briewilly) on Unsplash https://unsplash.com/photos/baked-pancakes-eeqbbemH9-c
+// Jurica Koletić (@juricakoletic) on Unsplash https://unsplash.com/photos/man-wearing-henley-top-portrait-7YVZYZeITc8
+// Ben den Engelsen (@benjeeeman) on Unsplash https://unsplash.com/photos/man-in-black-jacket-and-brown-cap-YUu9UAcOKZ4
+// Vince Veras (@vinceveras) on Unsplash https://unsplash.com/photos/woman-in-black-and-white-striped-shirt-AJIqZDAUD7A
+// Ayo Ogunseinde (@armedshutter) on Unsplash https://unsplash.com/photos/black-haired-man-making-face-sibVwORYqs0
+// Christopher Campbell (@chrisjoelcampbell) on Unsplash https://unsplash.com/photos/shallow-focus-photography-of-woman-outdoor-during-day-rDEOVtE7vOs
