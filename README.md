@@ -1,3 +1,47 @@
+<!-- Intro, 
+Screenshots
+Objectives
+Process - Trello, 
+How to install
+Seed project
+ -->
+
+
+## Acebook MERN Project
+
+Working with existing code, our challenge was to improve and extend a
+social media web application. Over two weeks, our team of five developed 
+functionality for the MERN codebase, allowing users to:
+- Securely sign-up and log-in
+- View posts on a feed
+- Like and comment on posts
+- Create their own text and image posts
+- Edit or delete those posts
+- Set their own bio and profile photo
+- Become friends with other users
+
+Team:
+- [Simon Budden](https://github.com/fantastito)
+- [Dan Guillis](https://github.com/dgullis) 
+- [Nick Torkington](https://github.com/N1ckT0rk)
+- [Thomas Powell](https://github.com/fnepnep83)
+- [Ed Gemmill](https://github.com/EdGemmill)
+
+### Screenshots
+
+### Objectives
+
+We completed the project after following the two-week intro to JavaScript
+and React. A number of pre-defined user stories gave the team targets, though
+we were free to develop any feature. The project was as much about applying 
+software development principles as it was furthering our understanding of web 
+apps and we used agile workflows to 
+
+Our team worked to two-day sprints, using a Trello board to 
+
+### Seed code
+Makers provided [a starter code base](https://github.com/makersacademy/acebook-mern-vite) of a MERN framework with basic features. 
+
 ## Acebook MERN Template
 
 In this project, you are task with working on an existing application. A
