@@ -1,4 +1,4 @@
-## Acebook MERN Project
+## Makers Acebook MERN Project
 
 Working with existing code, our challenge was to improve and extend a
 social media web application. Over two weeks, our team of five developed 
@@ -22,12 +22,12 @@ Team:
 
 <table>
   <tr>
-    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  1" width="200"></td>
-    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  2" width="200"></td>
+    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  1" width="300"></td>
+    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  2" width="300"></td>
   </tr>
   <tr>
-    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  3" width="200"></td>
-    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  4" width="200"></td>
+    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  3" width="300"></td>
+    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  4" width="300"></td>
   </tr>
 </table>
 
@@ -47,10 +47,9 @@ development (though we prioritised learning about the code base and seeing what 
 possible, over robust testing).
 
 ### Seed code
-Makers provided [a starter code base](https://github.com/makersacademy/acebook-mern-vite) of a MERN framework with basic features. 
+Makers provided [a MERN starter code base](https://github.com/makersacademy/acebook-mern-vite) that had some basic features. 
 
-
-### Quickstart
+### Quick start guide
 ### Install Node.js
 
 If you haven't already, make sure you have node and NVM installed.
