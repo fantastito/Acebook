@@ -75,8 +75,11 @@ body.active-modal {
 }
 
 .profile-picture img{
-    max-height: 100px;
-    min-height: 100px;
-    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #274C77;
+    object-fit: cover;
+    border-radius: 50%;
+    justify-content: center;
 }
 
