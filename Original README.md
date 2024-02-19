@@ -1,54 +1,31 @@
-## Acebook MERN Project
+## Acebook MERN Template
 
-Working with existing code, our challenge was to improve and extend a
-social media web application. Over two weeks, our team of five developed 
-functionality for the MERN codebase, allowing users to:
-- Securely sign-up and log-in
-- View posts on a feed
-- Like and comment on posts
-- Create their own text and image posts
-- Edit or delete those posts
-- Set their own bio and profile photo
-- Become friends with other users
+In this project, you are task with working on an existing application. A
+significant part of the challenge will be to familiarise yourself with the
+codebase you've inherited, as you work to **improve and extend** it.
 
-Team:
-- [Simon Budden](https://github.com/fantastito)
-- [Dan Guillis](https://github.com/dgullis) 
-- [Nick Torkington](https://github.com/N1ckT0rk)
-- [Thomas Powell](https://github.com/fnepnep83)
-- [Ed Gemmill](https://github.com/EdGemmill)
+### Structure
 
-### Screenshots
+This repo contains two applications:
 
-<table>
-  <tr>
-    <td><img src="screenshotplace_holder.jpg" alt="Image  1" width="200"></td>
-    <td><img src="screenshotplace_holder.jpg" alt="Image  2" width="200"></td>
-  </tr>
-  <tr>
-    <td><img src="screenshotplace_holder.jpg" alt="Image  3" width="200"></td>
-    <td><img src="screenshotplace_holder.jpg" alt="Image  4" width="200"></td>
-  </tr>
-</table>
+- A frontend React App
+- A backend api server
 
-### Development
+These two applications will communicate through HTTP requests, and need to be
+run separately.
 
-We completed the project following a two-week intro to JavaScript and React. 
-A number of pre-defined user stories gave the team targets, though
-we were free to develop any feature. We made improvements across the codebase,
-building the front-end user interface and creating routes to the back-end to 
-perform operations and database queries.
+### Documentation
 
-The project was as much about applying software development principles as it 
-was furthering our understanding of web apps. We used agile workflows to structure
-our development, taking tickets from a Trello board, with daily stand-ups and retros, 
-working to two-day sprints. We worked in pairs and tried to follow test-driven 
-development (though we prioritised learning about the code base and seeing what is 
-possible, over robust testing).
+[More documentation of the codebase and its architecture can be found here.](./DOCUMENTATION.md)
+It's recommended you all read the suggested docs _after making sure the whole
+setup below worked for everyone_. Then work together on a diagram describing how
+the application works.
 
-### Seed code
-Makers provided [a starter code base](https://github.com/makersacademy/acebook-mern-vite) of a MERN framework with basic features. 
+### Card wall
 
+https://trello.com/client-side-redirect?returnUrl=%2Finvite%2Fb%2FIczCYr2t%2FATTI70d0bf5d5568ddd0d2fcb706fbb96d6712A4E98C%2Facebook-kangaroo
+
+### Quickstart
 
 ### Install Node.js
 
