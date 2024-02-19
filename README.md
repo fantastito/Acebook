@@ -22,12 +22,12 @@ Team:
 
 <table>
   <tr>
-    <td><img src="screenshotplace_holder.jpg" alt="Image  1" width="200"></td>
-    <td><img src="screenshotplace_holder.jpg" alt="Image  2" width="200"></td>
+    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  1" width="200"></td>
+    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  2" width="200"></td>
   </tr>
   <tr>
-    <td><img src="screenshotplace_holder.jpg" alt="Image  3" width="200"></td>
-    <td><img src="screenshotplace_holder.jpg" alt="Image  4" width="200"></td>
+    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  3" width="200"></td>
+    <td><img src="./docs/screenshots/screenshotplace_holder.jpg" alt="Image  4" width="200"></td>
   </tr>
 </table>
 
@@ -50,6 +50,7 @@ possible, over robust testing).
 Makers provided [a starter code base](https://github.com/makersacademy/acebook-mern-vite) of a MERN framework with basic features. 
 
 
+### Quickstart
 ### Install Node.js
 
 If you haven't already, make sure you have node and NVM installed.
