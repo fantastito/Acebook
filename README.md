@@ -47,7 +47,8 @@ development (though we prioritised learning about the code base and seeing what 
 possible, over robust testing).
 
 ### Seed code
-Makers provided [a MERN starter code base](https://github.com/makersacademy/acebook-mern-vite) that had some basic features. 
+Makers provided [a MERN starter code base](https://github.com/makersacademy/acebook-mern-vite) that had routes for 
+user sign-up and displaying all posts.
 
 ### Quick start guide
 

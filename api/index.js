@@ -3,7 +3,6 @@ require("dotenv").config();
 
 const seedDatabase = require("./db/seeds.js");
 
-
 const app = require("./app.js");
 const { connectToDatabase } = require("./db/db.js");
 

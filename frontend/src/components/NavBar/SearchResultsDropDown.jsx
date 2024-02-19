@@ -19,7 +19,6 @@ export default function SearchResultsDropDown( { foundUsers, setShowSearchResult
         }
             }, [dropdownRef])
 
-        
     return (
         <div ref={dropdownRef} className="search-results">
 

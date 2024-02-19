@@ -19,13 +19,13 @@ const Post = (props) => {
     const [showMoreComments, setShowMoreComments] = useState(false);
     const [hideComments, setHideComments] = useState(false);
     const [deletes, setDeletes] = useState(false);
-  
+
 
     const handleDelete = () => {
         setDeletes(!deletes);
     };
-  
-  const handleEdit = () => {
+
+    const handleEdit = () => {
 		props.setEdits(!props.edits);
 	};
 

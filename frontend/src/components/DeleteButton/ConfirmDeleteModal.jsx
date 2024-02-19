@@ -2,7 +2,6 @@ import './ConfirmDeleteModal.css'
 
 export default function ConfirmDeleteModal({ handleDeletePostTrue, handleDeletePostFalse }) {
 
-    
     return (
 
         <div className="confirm-delete-container">
