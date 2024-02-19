@@ -4,7 +4,6 @@ import { deleteNotification } from "../../services/user"
 
 
 export default function Notification({username, notification, token, triggerStateChange}) {
-
     
     const acknowledgeNotification = async() => {
         try {

@@ -13,8 +13,8 @@ async function seedDatabase() {
 
     // List of users
     const users = [ 
-        { username: 'Alice', email: 'alice@example.com', password: 'Passw0rd!A', image: 'alice.jpg', bio: 'Hello, I am Alice! I love ice cream' },
-        { username: 'Bob', email: 'bob@example.com', password: 'Passw0rd!B', image: 'bob.jpg', bio: 'Better than any other Bob.' },
+        { username: 'Alice', email: 'alice@example.com', password: 'Passw0rd!A', image: 'alice.jpg', bio: 'Aloha after an awesome athletic afternoon' },
+        { username: 'Bob', email: 'bob@example.com', password: 'Passw0rd!B', image: 'bob.jpg', bio: 'Better bean breakfasts bouncing before bathtime.' },
         { username: 'Claire', email: 'claire@example.com', password: 'Passw0rd!C', image: 'claire.jpg', bio: 'Creatively coding Claire.' },
         { username: 'David', email: 'david@example.com', password: 'Passw0rd!D', image: 'david.jpg', bio: 'Dastardly dashing David' },
         { username: 'Eugene', email: 'eugene@example.com', password: 'Passw0rd!E', image: 'eugene.jpg', bio: 'Eventful evenings eating eucalyptus.' }       
@@ -56,9 +56,9 @@ async function seedDatabase() {
             media: null,
             postedBy: addedUsers[0]._id,
             comments: [
-                { message: 'JIM', user: addedUsers[1]._id },
-                { message: 'DWIGHT', user: addedUsers[2]._id },
-                { message: 'CREED!!!', user: addedUsers[2]._id }
+                { message: 'Obviously it has to be Jim', user: addedUsers[1]._id },
+                { message: 'Dwight all the way', user: addedUsers[2]._id },
+                { message: 'CREED!!!', user: addedUsers[4]._id }
             ],
         },
 
@@ -68,43 +68,45 @@ async function seedDatabase() {
             likes: [`${addedUsers[0]._id}`, `${addedUsers[4]._id}`, `${addedUsers[2]._id}`], // array of user IDs who liked the post
             postedBy: addedUsers[1]._id,
             comments: [
-                { message: 'Not a chance', user: addedUsers[0]._id },
-                { message: 'I shall go to the beach with your my fair lord', user: addedUsers[0]._id },
+                { message: "I'd love to go but I'm busy", user: addedUsers[0]._id },
+                { message: 'Sure thing, what time were you thinking?', user: addedUsers[4]._id },
+                { message: 'How about 11??', user: addedUsers[1]._id },
+                { message: 'Great, see you there 👍', user: addedUsers[4]._id },
             ],
         },
 
         {
-            message: "Just whipped up some heavenly jacket potatoes for dinner, crispy on the outside, fluffy on the inside.",
-            media: 'jacket-potatoe.jpeg',
+            message: "Just whipped up some hot, heavenly, fluffy pancakes for brunch.",
+            media: 'pancakes.jpg',
             likes: [`${addedUsers[1]._id}`, `${addedUsers[4]._id}`], // array of user IDs who liked the post
             postedBy: addedUsers[2]._id,
             comments: [
-                { message: '# jacket potatoe life', user: addedUsers[1]._id },
-                { message: 'get a life', user: addedUsers[0]._id },
-                { message: 'not a potatoe fan?', user: addedUsers[2]._id }
+                { message: '#pancakeslife', user: addedUsers[1]._id },
+                { message: 'Not for me! Crêpes all the way', user: addedUsers[0]._id },
+                { message: 'Count me in 😋', user: addedUsers[3]._id }
             ],
         },
 
         {
-            message: 'Just had the most peaceful day by the lake, fishing rod in hand and surrounded by nature #nature',
+            message: 'Just had the most peaceful day by the lake, fishing rod in hand and surrounded by #nature',
             media: 'fishing.jpeg',
             likes: [`${addedUsers[2]._id}`], // array of user IDs who liked the post
             postedBy: addedUsers[3]._id,
             comments: [
-                { message: 'get a life', user: addedUsers[0]._id },
-                { message: '#fishing life!!!!', user: addedUsers[4]._id },
+                { message: 'What did you catch?', user: addedUsers[0]._id },
+                { message: '#fishinglife!!!!', user: addedUsers[4]._id },
             ],
         },
 
         {
-            message: "Jumped out of a plane today and experienced the ultimate thrill of freefall! Adrenaline rush like no other. Living life on the edge! #SkydivingAdventure",
+            message: "OMG! Jumped out of a plane today,what a thrill! There's no adrenaline rush like freefalling. Living life on the edge! #SkydivingAdventure",
             media: 'sky-diver.avif',
             likes: [`${addedUsers[2]._id}`, `${addedUsers[3]._id}`, `${addedUsers[1]._id}`], // array of user IDs who liked the post
             postedBy: addedUsers[4]._id,
             comments: [
-                { message: 'get a life!', user: addedUsers[0]._id },
-                { message: 'i think there might be a cyberbully here', user: addedUsers[2]._id },
-                { message: 'get a life!', user: addedUsers[0]._id }
+                { message: "There's no way I could do that", user: addedUsers[0]._id },
+                { message: 'Join the club!', user: addedUsers[2]._id },
+                { message: 'When are you going again?', user: addedUsers[3]._id }
             ],
         }
     ];
@@ -124,3 +126,11 @@ async function seedDatabase() {
 };
 
 module.exports = seedDatabase;
+
+// Images list:
+// Chad Montano (@briewilly) on Unsplash https://unsplash.com/photos/baked-pancakes-eeqbbemH9-c
+// Jurica Koletić (@juricakoletic) on Unsplash https://unsplash.com/photos/man-wearing-henley-top-portrait-7YVZYZeITc8
+// Ben den Engelsen (@benjeeeman) on Unsplash https://unsplash.com/photos/man-in-black-jacket-and-brown-cap-YUu9UAcOKZ4
+// Vince Veras (@vinceveras) on Unsplash https://unsplash.com/photos/woman-in-black-and-white-striped-shirt-AJIqZDAUD7A
+// Ayo Ogunseinde (@armedshutter) on Unsplash https://unsplash.com/photos/black-haired-man-making-face-sibVwORYqs0
+// Christopher Campbell (@chrisjoelcampbell) on Unsplash https://unsplash.com/photos/shallow-focus-photography-of-woman-outdoor-during-day-rDEOVtE7vOs

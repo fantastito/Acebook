@@ -42,9 +42,9 @@
     margin-left:10px;
 }
 
-#home-nav-button, #login-nav-button, #signup-nav-button {
+#home-nav-button, #login-nav-button, #signup-nav-button, #logout-nav-button {
     display: flex;
-    border: 2px solid #F7D117;
+    border: 2px solid #274C77;
     border-radius: 10px 10px 10px 10px;
     font-size: large;
 }
@@ -53,12 +53,6 @@
     display: flex;
     padding:5px;
     margin-left:10px;
-}
-
-#logout-nav-button {
-    border: 2px solid #F7D117;
-    border-radius: 10px 10px 10px 10px;
-    font-size: large;
 }
 
 #navbar input {
@@ -85,6 +79,7 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    border: 2px solid #274C77;
     margin: 10px;
     object-fit: cover;
 
@@ -92,6 +87,6 @@
 
 .navbar-user-username {
     margin:1px;
-    color: #F7D117;
+    color: #274C77;
     display: none;
 }

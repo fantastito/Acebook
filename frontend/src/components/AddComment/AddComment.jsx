@@ -55,7 +55,7 @@ export default function AddComment({ postId, toggleStateChange, post_userId, tri
 				<textarea
 					className="text-area"
 					type="text"
-					placeholder="g'day"
+					placeholder="What's on your mind?"
 					value={commentText}
 					onChange={handleChange}
 				/>

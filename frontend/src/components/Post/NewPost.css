@@ -1,7 +1,7 @@
 @import '../../../node_modules/@fortawesome/fontawesome-free/css/all.css';
 
 .new-post-container {
-    width: 55%;
+    width: 500px;
     display: flex;
     flex-direction: column;
     border: 5px solid #00843D;
@@ -14,13 +14,11 @@
 
 .text-area-container{
     padding: 10px;
-    
-
 }
 
 .new-post-text-area {
-    border-radius: 20px;
-    resize: none;
+    border-radius: 10px;
+    width: 455px;
     padding: 10px;
     box-sizing: content-box;  
 }
@@ -31,7 +29,6 @@
 
 .post-button-container{
     padding: 5px;
-
 }
 
 .post-button {

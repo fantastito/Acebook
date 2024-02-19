@@ -19,13 +19,13 @@ const create = async (req, res) => {
 	const defaultUserImage = req.body.defaultUserImage;
 
 	if (!password || !username || !email) {
-		return res.status(400).json({ message: "Dang! One of the boxes is empty" });
+		return res.status(400).json({ message: "One of the sign-up boxes is empty" });
 	}
 
 	if (!checkPassword(password)) {
 		return res.status(400).json({
 			message:
-				"Ya haven't chucked in a proper password, mate. Gotta be at least 8 characters long, with an uppercase letter, a lowercase letter, a number, and a ripper special character.",
+				"Passwords must be at least 8 characters long, with upper- and lowercase letters, a number, and a special character.",
 		});
 	}
 	if (!checkEmail(email)) {
@@ -37,7 +37,7 @@ const create = async (req, res) => {
 	try {
 		const existingUser = await User.findOne({ username });
 		if (existingUser) {
-			return res.status(409).json({ message: "Sorry cobber, but someone's already bagged that username." });
+			return res.status(409).json({ message: "Username already in use." });
 		}
 	} catch (error) {
 		console.error(error);
@@ -46,7 +46,7 @@ const create = async (req, res) => {
 	try {
 		const existingEmail = await User.findOne({ email });
 		if (existingEmail) {
-			return res.status(409).json({ message: "Looks like someone's already snatched up that email address, mate." });
+			return res.status(409).json({ message: "Email already in use." });
 		}
 	} catch (error) {
 		console.error(error);
@@ -139,9 +139,9 @@ const uploadImage = async (req, res) => {
 			{ new: true }
 		)
 		
-		return res.status(200).json({message: 'picture uploaded', user:updatedUser, image:updatedUser.image, testMessage:"hello"});
+		return res.status(200).json({message: 'Picture uploaded.', user:updatedUser, image:updatedUser.image, testMessage:"hello"});
 	} catch (error) {
-		res.status(500).json({ message: 'Dang! An error occurred while uploading the picture.' });
+		res.status(500).json({ message: 'An error occurred while uploading the picture.' });
 	}
 }
 
@@ -158,7 +158,7 @@ const editBio = async (req, res) => {
 		)
 		res.status(200).json({message: 'Bio updated'});
 	} catch (error) {
-		res.status(500).json({ message: 'Dang! An error occurred while updating the bio.' });
+		res.status(500).json({ message: 'An error occurred while updating the bio.' });
 	}
 }
 

@@ -23,13 +23,13 @@
 }
 
 .post-user-image-container {
-
+    padding: 10px;
 }
 
 .post-user-image img{
     height: 60px;
     width: 60px;
-    padding: 10px;
+    border: 2px solid #274C77;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -63,10 +63,10 @@
     max-width: 200x;
     max-width: 200px;
     height: auto;
+    border: 2px solid #274C77;
+    border-radius: 10px 10px 10px 10px;
     width:auto;
     object-fit: cover;
-
-
 }
 
 .post-footer {
@@ -119,22 +119,6 @@
 .hide-comments-button-container {
     padding: 5px
 }
-
-
-/* .post-article {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-} */
-
-/* .post-article img {
-    display: flex;
-    height: 200px;
-    width: 200px;
-    align-items: center;
-    padding: 16px;
-} */
 
 .user-info {
     display: flex;
